@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+
+import {BrowserRouter , Route, Switch} from 'react-router-dom';
+import Home from './components/Home';
+import BookDetails from './components/BookDetails';
+import BookList from './components/BookList';
+import Cart from './components/Cart';
+import NotFound from './components/NotFound';
+import Checkout from './components/Checkout';
 import './App.css';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-        
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={Home}/>
+      <Route exact path="/books/:id" component={BookDetails}/>
+      <Route exact path="/books" component={BookList}/>
+      <Route exact path="/cart" component={Cart}/>
+      <Route exact path="/checkout" component={Checkout}/>
+      <Route exact path="/not-found" component={NotFound}/>
+      <Redirect to="/not-found" />
+    </Switch>
+  </BrowserRouter>
   );
 }
 
